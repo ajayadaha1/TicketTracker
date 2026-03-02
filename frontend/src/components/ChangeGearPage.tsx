@@ -18,7 +18,7 @@ export default function ChangeGearPage() {
         </Typography>
         <Typography variant="body1" color="text.secondary">
           ChangeGear integration coming soon. This will allow you to manage
-          and update ChangeGear tickets directly from TicketTractor.
+          and update ChangeGear tickets directly from TicketTracker.
         </Typography>
       </Paper>
     </Box>

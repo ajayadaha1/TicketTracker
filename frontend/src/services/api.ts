@@ -12,7 +12,7 @@ import {
   JiraSearchUser,
 } from '../types';
 
-const API_BASE_URL = '/ticket-tractor-api';
+const API_BASE_URL = '/ticket-tracker-api';
 
 class ApiService {
   private client: AxiosInstance;
@@ -42,7 +42,7 @@ class ApiService {
           localStorage.removeItem('tt_auth_token');
           localStorage.removeItem('tt_user');
           // Pass expired flag so LoginPage auto-triggers silent re-auth
-          window.location.href = '/ticket-tractor/login?expired=true';
+          window.location.href = '/ticket-tracker/login?expired=true';
         }
         return Promise.reject(error);
       }

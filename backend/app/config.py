@@ -6,12 +6,12 @@ from typing import Union
 
 class Settings(BaseSettings):
     # Application
-    APP_NAME: str = "TicketTractor"
+    APP_NAME: str = "TicketTracker"
     APP_VERSION: str = "1.0.0"
     DEBUG: bool = True
 
     # Database
-    DATABASE_URL: str = "postgresql+asyncpg://tickettractor:tickettractor_pass@localhost:5434/tickettractor"
+    DATABASE_URL: str = "postgresql+asyncpg://tickettracker:tickettracker_pass@localhost:5434/tickettracker"
 
     # Atlassian OAuth 2.0 (3LO)
     ATLASSIAN_CLIENT_ID: str = ""

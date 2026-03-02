@@ -41,7 +41,7 @@ export default function Layout() {
       <AppBar position="static" color="default" elevation={1}>
         <Toolbar>
           <Typography variant="h6" sx={{ fontWeight: 700, mr: 4 }}>
-            TicketTractor
+            TicketTracker
           </Typography>
 
           <Tabs

@@ -118,7 +118,7 @@ export default function LoginPage() {
           }}
         >
           <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
-            TicketTractor
+            TicketTracker
           </Typography>
           <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
             Login to manage Jira ticket labels and comments

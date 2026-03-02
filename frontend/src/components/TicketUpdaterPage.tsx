@@ -278,7 +278,7 @@ export default function TicketUpdaterPage() {
       {/* ── Section Toggle ──────────────────────────────────────────────────── */}
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
         <Typography variant="h5" sx={{ fontWeight: 600 }}>
-          {activeSection === 'ticket' ? 'Ticket Updater' : 'Assignee Updater'}
+          {activeSection === 'ticket' ? 'Update Ticket' : 'Update Assignee'}
         </Typography>
         <ToggleButtonGroup
           value={activeSection}
@@ -287,10 +287,10 @@ export default function TicketUpdaterPage() {
           size="small"
         >
           <ToggleButton value="ticket">
-            <EditIcon sx={{ mr: 0.5, fontSize: 18 }} /> Ticket Updater
+            <EditIcon sx={{ mr: 0.5, fontSize: 18 }} /> Update Ticket
           </ToggleButton>
           <ToggleButton value="assignee">
-            <PersonIcon sx={{ mr: 0.5, fontSize: 18 }} /> Assignee Updater
+            <PersonIcon sx={{ mr: 0.5, fontSize: 18 }} /> Update Assignee
           </ToggleButton>
         </ToggleButtonGroup>
       </Box>

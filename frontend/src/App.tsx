@@ -41,7 +41,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter basename="/ticket-tractor">
+      <BrowserRouter basename="/ticket-tracker">
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route
