@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from sqlalchemy import Boolean, Column, DateTime, Float, Integer, String, Text, func
+from sqlalchemy import Boolean, Column, DateTime, Float, Integer, String, Text, UniqueConstraint, func
 
 from .database import Base
 
@@ -53,3 +53,18 @@ class Session(Base):
     expires_at = Column(Float, nullable=False)
     created_at = Column(Float, nullable=False)
     user_info = Column(Text, nullable=False, default="{}")  # JSON string
+
+
+class DropdownOption(Base):
+    """Configurable dropdown options for Stage, Flow, and Result fields."""
+    __tablename__ = "dropdown_options"
+    __table_args__ = (
+        UniqueConstraint("category", "parent_stage", "value", name="uq_dropdown_option"),
+    )
+
+    id = Column(Integer, primary_key=True, index=True)
+    category = Column(String, nullable=False, index=True)  # "stage", "flow", "result"
+    parent_stage = Column(String, nullable=True, default="")  # Only for flows: which stage this flow belongs to
+    value = Column(String, nullable=False)
+    label = Column(String, nullable=False)
+    sort_order = Column(Integer, nullable=False, default=0)

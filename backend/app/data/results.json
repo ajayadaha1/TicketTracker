@@ -1,5 +1,5 @@
 [
-  { "value": "R1", "label": "Result 1 - Pass" },
-  { "value": "R2", "label": "Result 2 - Fail" },
-  { "value": "R3", "label": "Result 3 - Inconclusive" }
+  { "value": "Pass", "label": "Pass" },
+  { "value": "Fail", "label": "Fail" },
+  { "value": "Marginal", "label": "Marginal" }
 ]

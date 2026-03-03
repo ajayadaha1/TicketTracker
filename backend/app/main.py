@@ -17,6 +17,7 @@ async def lifespan(app: FastAPI):
     from . import models  # noqa: F401
     await create_tables()
     await assignees.seed_assignee_users()
+    await tickets.seed_dropdown_options()
     print("Database initialized")
     yield
     await dispose_engine()

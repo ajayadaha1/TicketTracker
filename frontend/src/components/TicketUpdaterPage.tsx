@@ -39,6 +39,8 @@ import TicketRow from './TicketRow';
 import LabelConflictDialog from './LabelConflictDialog';
 import SubmitResultsDialog from './SubmitResultsDialog';
 import AssigneeUpdater from './AssigneeUpdater';
+import ManageOptionsDialog from './ManageOptionsDialog';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const actionColors: Record<string, string> = {
   label_update: '#4caf50',
@@ -125,6 +127,9 @@ export default function TicketUpdaterPage() {
   const [resultsDialogOpen, setResultsDialogOpen] = useState(false);
   const [updateResults, setUpdateResults] = useState<BulkUpdateResponse | null>(null);
 
+  // Manage options dialog state
+  const [manageOptionsOpen, setManageOptionsOpen] = useState(false);
+
   // Recent history state
   const [recentHistory, setRecentHistory] = useState<AuditEntry[]>([]);
   const [historyPage, setHistoryPage] = useState(0);
@@ -155,6 +160,10 @@ export default function TicketUpdaterPage() {
       .finally(() => setLoading(false));
     loadHistory(0);
   }, [loadHistory]);
+
+  const reloadConfig = () => {
+    apiService.getDropdownConfig().then(setConfig).catch(() => {});
+  };
 
   const handleAddBulkTickets = () => {
     if (!bulkInput.trim()) return;
@@ -302,6 +311,18 @@ export default function TicketUpdaterPage() {
       {activeSection === 'ticket' && (
       <Box>
 
+      {/* Manage Options button */}
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 1 }}>
+        <Button
+          variant="outlined"
+          size="small"
+          startIcon={<SettingsIcon />}
+          onClick={() => setManageOptionsOpen(true)}
+        >
+          Manage Options
+        </Button>
+      </Box>
+
       {error && (
         <Alert severity="error" sx={{ mb: 2 }} onClose={() => setError(null)}>
           {error}
@@ -381,7 +402,11 @@ export default function TicketUpdaterPage() {
               size="large"
               startIcon={submitting ? <CircularProgress size={20} /> : <SendIcon />}
               onClick={handleSubmit}
-              disabled={submitting || tickets.length === 0}
+              disabled={
+                submitting ||
+                tickets.length === 0 ||
+                tickets.some((t) => !t.ticket_key || !t.stage || !t.flow || !t.result)
+              }
             >
               {submitting ? 'Submitting...' : 'Submit'}
             </Button>
@@ -551,6 +576,13 @@ export default function TicketUpdaterPage() {
         open={resultsDialogOpen}
         results={updateResults}
         onClose={() => setResultsDialogOpen(false)}
+      />
+
+      <ManageOptionsDialog
+        open={manageOptionsOpen}
+        onClose={() => setManageOptionsOpen(false)}
+        config={config}
+        onConfigChanged={reloadConfig}
       />
       </Box>
       )}

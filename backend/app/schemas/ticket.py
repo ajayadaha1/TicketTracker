@@ -61,5 +61,19 @@ class DropdownOption(BaseModel):
 
 class DropdownConfig(BaseModel):
     stages: list[DropdownOption]
-    flows: list[DropdownOption]
+    flows: dict[str, list[DropdownOption]]
     results: list[DropdownOption]
+
+
+class AddDropdownOptionRequest(BaseModel):
+    value: str
+    label: str
+
+
+class DropdownOptionOut(BaseModel):
+    id: int
+    category: str
+    parent_stage: str
+    value: str
+    label: str
+    sort_order: int

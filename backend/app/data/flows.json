@@ -1,5 +1,13 @@
-[
-  { "value": "F1", "label": "Flow 1 - Standard" },
-  { "value": "F2", "label": "Flow 2 - Stress" },
-  { "value": "F3", "label": "Flow 3 - Debug" }
-]
+{
+  "ATE": [
+    { "value": "ft1", "label": "ft1" },
+    { "value": "ft2", "label": "ft2" },
+    { "value": "Percorecharz", "label": "Percorecharz" }
+  ],
+  "SLT": [
+    { "value": "slt1", "label": "slt1" },
+    { "value": "slt2", "label": "slt2" }
+  ],
+  "PLATFORM": [],
+  "FS": []
+}

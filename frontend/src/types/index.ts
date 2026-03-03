@@ -16,7 +16,7 @@ export interface DropdownOption {
 
 export interface DropdownConfig {
   stages: DropdownOption[];
-  flows: DropdownOption[];
+  flows: Record<string, DropdownOption[]>;
   results: DropdownOption[];
 }
 

@@ -75,6 +75,34 @@ class ApiService {
     return response.data;
   }
 
+  // Dropdown option management
+  async addStage(value: string, label: string) {
+    const response = await this.client.post('/api/tickets/config/stages', { value, label });
+    return response.data;
+  }
+
+  async removeStage(value: string) {
+    await this.client.delete(`/api/tickets/config/stages/${encodeURIComponent(value)}`);
+  }
+
+  async addFlow(stage: string, value: string, label: string) {
+    const response = await this.client.post(`/api/tickets/config/flows/${encodeURIComponent(stage)}`, { value, label });
+    return response.data;
+  }
+
+  async removeFlow(stage: string, value: string) {
+    await this.client.delete(`/api/tickets/config/flows/${encodeURIComponent(stage)}/${encodeURIComponent(value)}`);
+  }
+
+  async addResult(value: string, label: string) {
+    const response = await this.client.post('/api/tickets/config/results', { value, label });
+    return response.data;
+  }
+
+  async removeResult(value: string) {
+    await this.client.delete(`/api/tickets/config/results/${encodeURIComponent(value)}`);
+  }
+
   // Ticket operations
   async checkLabels(tickets: TicketEntry[]): Promise<{ results: LabelCheckResult[] }> {
     const payload = tickets.map((t) => ({

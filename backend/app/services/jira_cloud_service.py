@@ -106,14 +106,16 @@ class JiraCloudService:
     def build_label(stage: str, flow: str, result: str, failing_cmd: str) -> str:
         """Build the results label string.
 
-        Format: results_<Stage>_<Flow>_<Result>
+        Format: results_<Stage>_<Flow>_<Result>_<failing_cmd>
         If failing_cmd is empty (after stripping underscores), append '_X'.
-        Example: results_S1_F2_R3 or results_S1_F2_R3_X
+        Example: results_S1_F2_R3_mycmd or results_S1_F2_R3_X
         """
-        # Strip underscores from failing_cmd before evaluating
-        failing_cmd_clean = failing_cmd.replace("_", "").strip() if failing_cmd else ""
+        # Strip leading/trailing underscores and whitespace
+        failing_cmd_clean = failing_cmd.strip().strip("_") if failing_cmd else ""
         label = f"results_{stage}_{flow}_{result}"
-        if not failing_cmd_clean:
+        if failing_cmd_clean:
+            label += f"_{failing_cmd_clean}"
+        else:
             label += "_X"
         return label
 
